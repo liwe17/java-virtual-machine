@@ -1,2 +1,4 @@
 # java-virtual-machine
-- Java虚拟机学习笔记
+## 学习路线
+
+![学习路线图](pic/JVM.png)

@@ -2,3 +2,5 @@
 ## 学习路线
 
 ![学习路线图](pic/JVM.png)
+
+![方法区](pic/method-area.png)

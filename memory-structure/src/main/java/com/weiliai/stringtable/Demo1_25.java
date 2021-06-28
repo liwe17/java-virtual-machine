@@ -27,7 +27,8 @@ public class Demo1_25 {
                     if(line == null) {
                         break;
                     }
-                    address.add(line.intern());
+                    //address.add(line.intern()); //加入串池
+                    address.add(line);
                 }
                 System.out.println("cost:" +(System.nanoTime()-start)/1000000);
             }

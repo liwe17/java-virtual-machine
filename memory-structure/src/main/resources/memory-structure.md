@@ -194,5 +194,26 @@ public static void main(String[] args) {
     
 ### StringTable调优
 
+- 当存在大量重复字符串时,可以通过入池来解决内存占用问题,避免创建过多重复对象.
 
+- 代码
+    - com.weiliai.stringtable.Demo1_25
+
+
+## 直接内存
+### 定义
+- Direct Memory
+    - 常见与NIO操作时,用于数据缓冲区
+    - 分配回收成本较高,但读写性能高
+    - 不受JVM内存回收管理
+
+### 分配和回收原理
+- 使用Unsafe对象完成直接内存的分配回收,并且回收需要主动调用freeMemory方法
+- 使用ByteBuffer的实现类内部,使用了Cleaner(虚引用)来检测ByteBuffer对象,一旦ByteBuffer对象被垃圾回收,那么就会由ReferenceHandler线程通过Cleaner的clean方法调用freeMemory来释放直接内存
+
+- 代码
+    - com.weiliai.direct.Demo1_9
+    - com.weiliai.direct.Demo1_10
+    - com.weiliai.direct.Demo1_26
+    - com.weiliai.direct.Demo1_27
 

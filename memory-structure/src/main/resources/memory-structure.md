@@ -148,5 +148,51 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   727292 avail Mem
     - 常量池时*.class文件中的,当该类被加载,它的常量池信息就会放入运行时常量池,并把里面的符号地址变为真实地址
     
 
+## StringTable
+### 面试题
+- 代码
+    - com.weiliai.stringtable.Demo1_22
+    
+```text
+public static void main(String[] args) {
+        String s1 = "a";
+        String s2 = "b";
+        String s3 = "ab";
+        String s4 = s1+s2; 
+        String s5 = "a"+"b"; 
+        String s6 = s4.intern();
+        System.out.println(s3==s5); //true
+        System.out.println(s3==s6); //true
+        System.out.println(s3==s4); //false
+        
+}
+```
+
+### StringTable特性
+
+- 常量池的字符串尽是符号,第一次用到时才变为对象
+- 利用串池的机制,来避免重复创建字符串对象
+- 字符串变量拼接的原理是StringBuilder(1.8)
+- 字符串常量拼接的原理是编译器优化
+- 可以使用intern方法,主动将串池中还没有的字符串对象放入串池
+    - 1.8将这个字符串对象尝试放入串池,如果有则并不会放入,如果没有则放入串池.
+    - 1.6将这个字符串对象尝试放入串池,如果有则并不会放入,如果没有会把此对象复制一份,放入串池.
+
+- 代码
+    - com.weiliai.stringtable.Demo1_23
+
+
+### StringTable位置
+
+- 版本的关系
+    - 1.6及以前,在方法区(概念)永久代(实现),只有fullGC才会触发
+    - 1.7及以后,在堆(Heap)中,minorGC就会触发
+
+- 代码
+    - com.weiliai.stringtable.Demo1_6
+    - com.weiliai.stringtable.Demo1_7
+    
+### StringTable调优
+
 
 

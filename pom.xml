@@ -12,6 +12,7 @@
 
     <modules>
         <module>memory-structure</module>
+        <module>garbage-collection</module>
     </modules>
 
     <properties>

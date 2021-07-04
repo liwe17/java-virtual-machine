@@ -122,7 +122,7 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   727292 avail Mem
 
 ### 组成
 
-- 详见README.md
+![方法区](pic/method-area.png)
 
 ### 方法区内存溢出
 - 1.8以前会导致永久代内存溢出

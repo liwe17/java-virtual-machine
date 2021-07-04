@@ -106,5 +106,38 @@
 </table>
 
 ## 垃圾回收器
+- 串行
+    - 单线程
+    - 堆内存较小,适合个人电脑
+- 吞吐量优先
+    - 让单位时间内,STW的时间最短 0.2 + 0.2 = 0.4,垃圾回收时间占比最低,这样就称吞吐量高
+- 响应时间优先
+    - 多线程
+    - 堆内存较大,多核CPU
+    - 尽可能让单次STW的时间最短 0.1 + 0.1 + 0.1 + 0.1 + 0.1 =0.5
+
+### 串行
+
+> -XX:+UseSerialGC = Serial + SerialOld
+
+![串行](pic/串行.png)
+
+### 吞吐量优先
+
+> -XX:+UseParallelGC ~ -XX:+UseParallelOldGC
+> -XX:GCTimeRatio=ratio
+> -XX:MaxGCPauseMillis=ms
+> -XX:ParallelGCThreads=n
+
+![吞吐量优先](pic/吞吐量优先.png)
+
+### 响应时间优先
+
+> -XX:+UseConcMarkSweepGC ~ -XX:+UseParNewGC ~ SerialOld
+> -XX:ParallelGCThreads=n ~ -XX:ConcGCThreads=threads
+> -XX:CMSInitiatingOccupancyFraction=percent
+> -XX:+CMSScavengeBeforeRemark
+
+![响应时间最短](pic/响应时间最短.png)
 
 ## 垃圾回收调优
